@@ -13,7 +13,6 @@ This repository hosts the source code for TOMATO, a dynamic food ordering websit
 - Admin Panel
 - JWT Authentication
 - Password Hashing with Bcrypt
-- Stripe Payment Integration
 - Login/Signup
 - Logout
 - Add to Cart
