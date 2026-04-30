@@ -112,7 +112,6 @@ Start the Backend server
 * [Node.js](https://nodejs.org/en)
 * [Express.js](https://expressjs.com/)
 * [Mongodb](https://www.mongodb.com/)
-* [Stripe](https://stripe.com/)
 * [JWT-Authentication](https://jwt.io/introduction)
 * [Multer](https://www.npmjs.com/package/multer)
 
@@ -127,4 +126,4 @@ Just raise an issue, and we will discuss it.
 
 ## Feedback
 
-If you have any feedback, please reach out to me [here](https://www.linkedin.com/in/muhammad-shan-full-stack-developer/)
+If you have any feedback, please reach out to me [here](https://www.linkedin.com/in/shivendra-pratap-singh-b192b9370/)
