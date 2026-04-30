@@ -28,8 +28,8 @@ This repository hosts the source code for TOMATO, a dynamic food ordering websit
 
 ## Screenshots
 
-![Hero](https://i.ibb.co/59cwY75/food-hero.png)
-- Hero Section
+![Home](https://i.ibb.co/59cwY75/food-hero.png)
+- Home Section
 
 ![Products](https://i.ibb.co/JnNQPyQ/food-products.png)
 - Products Section
