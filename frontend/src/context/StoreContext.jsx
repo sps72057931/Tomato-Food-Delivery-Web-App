@@ -11,7 +11,8 @@ const StoreContextProvider = (props) => {
   const [food_list, setFoodList] = useState([]);
 
   const addToCart = async (itemId) => {
-    if (!token) {
+    const currentToken = token || localStorage.getItem("token");
+    if (!currentToken) {
       toast.error("Please Login First");
       return;
     }
@@ -20,32 +21,31 @@ const StoreContextProvider = (props) => {
     } else {
       setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] + 1 }));
     }
-    if (token) {
-      const response = await axios.post(
-        url + "/api/cart/add",
-        { itemId },
-        { headers: { token } }
-      );
-      if (response.data.success) {
-        toast.success("Item Added to Cart");
-      } else {
-        toast.error("Something went wrong");
-      }
+    const response = await axios.post(
+      url + "/api/cart/add",
+      { itemId },
+      { headers: { token: currentToken } }
+    );
+    if (response.data.success) {
+      toast.success("Item Added to Cart");
+    } else {
+      toast.error("Something went wrong");
     }
   };
 
   const removeFromCart = async (itemId) => {
+    const currentToken = token || localStorage.getItem("token");
     setCartItems((prev) => ({ ...prev, [itemId]: prev[itemId] - 1 }));
-    if (token) {
-      const response= await axios.post(
+    if (currentToken) {
+      const response = await axios.post(
         url + "/api/cart/remove",
         { itemId },
-        { headers: { token } }
+        { headers: { token: currentToken } }
       );
-      if(response.data.success){
-        toast.success("item Removed from Cart")
-      }else{
-        toast.error("Something went wrong")
+      if (response.data.success) {
+        toast.success("Item Removed from Cart");
+      } else {
+        toast.error("Something went wrong");
       }
     }
   };
@@ -101,10 +101,12 @@ const StoreContextProvider = (props) => {
     token,
     setToken,
   };
+
   return (
     <StoreContext.Provider value={contextValue}>
       {props.children}
     </StoreContext.Provider>
   );
 };
+
 export default StoreContextProvider;
