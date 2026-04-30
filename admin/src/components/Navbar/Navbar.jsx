@@ -1,4 +1,4 @@
-import React, { useContext, useState, useEffect } from "react";
+import React, { useContext, useState } from "react";
 import "./Navbar.css";
 import { assets } from "../../assets/frontend_assets/assets";
 import { Link, useNavigate } from "react-router-dom";
@@ -73,17 +73,21 @@ const Navbar = ({ setShowLogin }) => {
         </div>
 
         {!token ? (
-          <button className="sign-in-btn" onClick={() => setShowLogin(true)}>sign in</button>
+          <button className="sign-in-btn" onClick={() => setShowLogin(true)}>
+            sign in
+          </button>
         ) : (
           <div className="navbar-profile">
             <img src={assets.profile_icon} alt="" />
             <ul className="nav-profile-dropdown">
               <li onClick={() => navigate("/myorders")}>
-                <img src={assets.bag_icon} alt="" /><p>Orders</p>
+                <img src={assets.bag_icon} alt="" />
+                <p>Orders</p>
               </li>
               <hr />
               <li onClick={logout}>
-                <img src={assets.logout_icon} alt="" /><p>Logout</p>
+                <img src={assets.logout_icon} alt="" />
+                <p>Logout</p>
               </li>
             </ul>
           </div>
