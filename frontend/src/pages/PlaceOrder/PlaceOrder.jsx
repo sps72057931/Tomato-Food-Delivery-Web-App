@@ -3,13 +3,13 @@ import "./PlaceOrder.css";
 import { StoreContext } from "../../context/StoreContext";
 import axios from "axios";
 import { toast } from "react-toastify";
-import { useNavigate } from 'react-router-dom'
+import { useNavigate } from "react-router-dom";
 
 const PlaceOrder = () => {
-  const navigate= useNavigate();
-
-  const { getTotalCartAmount, token, food_list, cartItems, url } =
+  const navigate = useNavigate();
+  const { getTotalCartAmount, token, food_list, cartItems, url, setCartItems } =
     useContext(StoreContext);
+
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
@@ -30,39 +30,45 @@ const PlaceOrder = () => {
 
   const placeOrder = async (event) => {
     event.preventDefault();
+
     let orderItems = [];
     food_list.map((item) => {
       if (cartItems[item._id] > 0) {
-        let itemInfo = item;
+        let itemInfo = { ...item };
         itemInfo["quantity"] = cartItems[item._id];
         orderItems.push(itemInfo);
       }
     });
+
     let orderData = {
       address: data,
       items: orderItems,
       amount: getTotalCartAmount() + 2,
     };
-    
-    let response= await axios.post(url+"/api/order/place",orderData,{headers:{token}});
-    if(response.data.success){
-      const {session_url}=response.data;
-      window.location.replace(session_url);
-    }else{
-      toast.error("Errors!")
+
+    const response = await axios.post(url + "/api/order/place", orderData, {
+      headers: { token },
+    });
+
+    if (response.data.success) {
+      setCartItems({});
+      toast.success("Order Placed Successfully! Pay on delivery.");
+      navigate("/myorders");
+    } else {
+      toast.error("Something went wrong. Please try again.");
     }
   };
 
-  useEffect(()=>{
-    if(!token){
-      toast.error("Please Login first")
-      navigate("/cart")
-    }
-    else if(getTotalCartAmount()===0){
+  useEffect(() => {
+    if (!token) {
+      toast.error("Please Login first");
+      navigate("/cart");
+    } else if (getTotalCartAmount() === 0) {
       toast.error("Please Add Items to Cart");
-      navigate("/cart")
+      navigate("/cart");
     }
-  },[token])
+  }, [token]);
+
   return (
     <form className="place-order" onSubmit={placeOrder}>
       <div className="place-order-left">
@@ -90,7 +96,7 @@ const PlaceOrder = () => {
           name="email"
           value={data.email}
           onChange={onChangeHandler}
-          type="text"
+          type="email"
           placeholder="Email Address"
         />
         <input
@@ -146,12 +152,13 @@ const PlaceOrder = () => {
           placeholder="Phone"
         />
       </div>
+
       <div className="place-order-right">
         <div className="cart-total">
           <h2>Cart Totals</h2>
           <div>
             <div className="cart-total-details">
-              <p>Subtotals</p>
+              <p>Subtotal</p>
               <p>${getTotalCartAmount()}</p>
             </div>
             <hr />
@@ -162,12 +169,24 @@ const PlaceOrder = () => {
             <hr />
             <div className="cart-total-details">
               <b>Total</b>
-              <b>
-                ${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}
-              </b>
+              <b>${getTotalCartAmount() === 0 ? 0 : getTotalCartAmount() + 2}</b>
             </div>
           </div>
-          <button type="submit">PROCEED TO PAYMENT</button>
+
+          {/* Payment Method */}
+          <div className="payment-method">
+            <h3>Payment Method</h3>
+            <div className="cod-box">
+              <div className="cod-icon">💵</div>
+              <div className="cod-info">
+                <p className="cod-title">Cash on Delivery</p>
+                <p className="cod-desc">Pay when your order arrives at your door</p>
+              </div>
+              <div className="cod-check">✓</div>
+            </div>
+          </div>
+
+          <button type="submit">PLACE ORDER</button>
         </div>
       </div>
     </form>
