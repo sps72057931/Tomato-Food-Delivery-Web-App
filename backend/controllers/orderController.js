@@ -3,7 +3,6 @@ import userModel from "../models/userModel.js";
 
 // placing user order with Cash on Delivery
 const placeOrder = async (req, res) => {
-  const frontend_url = "http://localhost:5173";
   try {
     const newOrder = new orderModel({
       userId: req.body.userId,
