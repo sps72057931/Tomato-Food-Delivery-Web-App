@@ -13,7 +13,6 @@ const port = process.env.PORT || 4000;
 
 app.use(express.json());
 app.use(cors());
-
 connectDB();
 
 app.use("/images", express.static(path.join(process.cwd(), "uploads")));
