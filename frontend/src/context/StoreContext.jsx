@@ -70,13 +70,20 @@ const StoreContextProvider = (props) => {
     }
   };
 
+  // In StoreContext.jsx
   const loadCardData = async (token) => {
-    const response = await axios.post(
-      url + "/api/cart/get",
-      {},
-      { headers: { token } }
-    );
-    setCartItems(response.data.cartData);
+    try {
+      const response = await axios.post(
+        url + "/api/cart/get",
+        {},
+        { headers: { token } }
+      );
+      if (response.data.success) {
+        setCartItems(response.data.cartData);
+      }
+    } catch (error) {
+      console.log("Cart load error:", error);
+    }
   };
 
   useEffect(() => {
