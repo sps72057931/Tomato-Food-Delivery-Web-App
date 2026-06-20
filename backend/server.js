@@ -12,10 +12,7 @@ const app = express();
 const port = process.env.PORT || 4000;
 
 app.use(express.json());
-app.use(cors({
-  origin: ["https://tomato-frontend-eku5.onrender.com", "https://tomato-admin-lisc.onrender.com"],
-  credentials: true
-}));
+app.use(cors());
 connectDB();
 
 app.use("/images", express.static(path.join(process.cwd(), "uploads")));
