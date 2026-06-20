@@ -26,7 +26,7 @@ app.use("/api/cart", cartRouter);
 app.use("/api/order", orderRouter);
 
 app.get("/", (req, res) => {
-  res.redirect("https://tomato-food-delivery-web-app-1.onrender.com");
+  res.redirect("https://tomato-frontend-eku5.onrender.com");
 });
 
 app.listen(port, () => {
