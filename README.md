@@ -4,8 +4,8 @@ This repository hosts the source code for TOMATO, a dynamic food ordering websit
 
 ## Demo
 
-- User Panel: [https://tomato-food-delivery-web-app-1.onrender.com/](https://tomato-food-delivery-web-app-1.onrender.com/)
-- Admin Panel: [https://tomato-food-delivery-web-app-admin.onrender.com/](https://tomato-food-delivery-web-app-admin.onrender.com)
+- User Panel: [https://tomato-food-delivery-web-app-1.onrender.com/](https://tomato-backend-jpfa.onrender.com)
+- Admin Panel: [https://tomato-food-delivery-web-app-admin.onrender.com/](https://tomato-admin-lisc.onrender.com)
 
 ## Features
 
