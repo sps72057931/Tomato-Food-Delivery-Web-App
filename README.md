@@ -45,12 +45,12 @@ This repository hosts the source code for TOMATO, a dynamic food ordering websit
 Clone the project
 
 ```bash
-    git clone https://github.com/Mshandev/Food-Delivery
+    git clone https://github.com/sps72057931/Tomato-Food-Delivery-Web-App
 ```
 Go to the project directory
 
 ```bash
-    cd Food-Delivery
+    cd Tomato-Food-Delivery-Web-App
 ```
 Install dependencies (frontend)
 
@@ -76,7 +76,6 @@ Setup Environment Vaiables
   JWT_SECRET=YOUR_SECRET_TEXT
   SALT=YOUR_SALT_VALUE
   MONGO_URL=YOUR_DATABASE_URL
-  STRIPE_SECRET_KEY=YOUR_KEY
  ```
 
 Setup the Frontend and Backend URL
@@ -89,22 +88,22 @@ Setup the Frontend and Backend URL
   - orderController in Backend folder
       const frontend_url = YOUR_FRONTEND_URL 
 
-Start the Backend server
+Start the Admin server
 
 ```bash
-    nodemon server.js
+    npm run dev
 ```
 
 Start the Frontend server
 
 ```bash
-    npm start
+    npm run dev
 ```
 
 Start the Backend server
 
 ```bash
-    npm start
+    npm run dev
 ```
 ## Tech Stack
 * [React](https://reactjs.org/)
